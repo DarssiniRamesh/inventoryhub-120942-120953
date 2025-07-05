@@ -1,82 +1,183 @@
-# Lightweight React Template for KAVIA
+# Inventory Management System - Frontend
 
-This project provides a minimal React template with a clean, modern UI and minimal dependencies.
+A modern React-based inventory management system with role-based access control, real-time updates, and responsive design.
 
 ## Features
 
-- **Lightweight**: No heavy UI frameworks - uses only vanilla CSS and React
-- **Modern UI**: Clean, responsive design with KAVIA brand styling
-- **Fast**: Minimal dependencies for quick loading times
-- **Simple**: Easy to understand and modify
+- **Authentication & Authorization**: JWT-based login with role-based permissions (Admin, Manager)
+- **Dashboard**: Overview of inventory statistics and system status
+- **Item Management**: Complete CRUD operations for inventory items
+- **Storeroom Management**: Manage multiple storage locations
+- **Transfer System**: Move items between storerooms with history tracking
+- **Search & Filter**: Advanced search capabilities across all entities
+- **Responsive Design**: Works seamlessly on desktop and mobile devices
+- **Material UI**: Modern, accessible user interface components
+
+## Technology Stack
+
+- **React 18**: Modern React with hooks and functional components
+- **Material-UI**: Professional UI component library
+- **React Router**: Client-side routing and navigation
+- **Axios**: HTTP client for API communication
+- **Context API**: State management for authentication
+
+## Color Scheme
+
+- **Primary**: #7fb8f0 (Light Blue)
+- **Secondary**: #424242 (Dark Gray)
+- **Accent**: #fddeaf (Light Peach)
+
+## Project Structure
+
+```
+src/
+├── components/          # Reusable UI components
+│   ├── Layout.js       # Main layout with sidebar and header
+│   └── ProtectedRoute.js # Authentication guard component
+├── contexts/           # React Context providers
+│   └── AuthContext.js  # Authentication state management
+├── pages/             # Main application pages
+│   ├── Dashboard.js   # Dashboard with statistics
+│   ├── Items.js       # Item management page
+│   ├── Login.js       # Authentication page
+│   ├── Storerooms.js  # Storeroom management page
+│   ├── Transfers.js   # Transfer creation page
+│   └── TransferHistory.js # Transfer history page
+├── services/          # API service layer
+│   └── apiService.js  # HTTP client and API methods
+├── App.js            # Main application component
+├── App.css           # Global styles and theme
+└── index.js          # Application entry point
+```
 
 ## Getting Started
 
-In the project directory, you can run:
+### Prerequisites
 
-### `npm start`
+- Node.js (v14 or higher)
+- npm or yarn package manager
 
-Runs the app in development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Installation
 
-### `npm test`
+1. Clone the repository
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
 
-Launches the test runner in interactive watch mode.
+3. Set up environment variables:
+   ```bash
+   cp .env.example .env
+   ```
+   Update the `.env` file with your backend API URL.
 
-### `npm run build`
+4. Start the development server:
+   ```bash
+   npm start
+   ```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+The application will be available at `http://localhost:3000`.
 
-## Customization
+### Building for Production
 
-### Colors
-
-The main brand colors are defined as CSS variables in `src/App.css`:
-
-```css
-:root {
-  --kavia-orange: #E87A41;
-  --kavia-dark: #1A1A1A;
-  --text-color: #ffffff;
-  --text-secondary: rgba(255, 255, 255, 0.7);
-  --border-color: rgba(255, 255, 255, 0.1);
-}
+```bash
+npm run build
 ```
 
-### Components
+This creates an optimized production build in the `build/` folder.
 
-This template uses pure HTML/CSS components instead of a UI framework. You can find component styles in `src/App.css`. 
+## API Integration
 
-Common components include:
-- Buttons (`.btn`, `.btn-large`)
-- Container (`.container`)
-- Navigation (`.navbar`)
-- Typography (`.title`, `.subtitle`, `.description`)
+The frontend communicates with the backend through RESTful API endpoints:
 
-## Learn More
+- `/auth/login` - User authentication
+- `/auth/me` - Get current user profile
+- `/api/items` - Item management
+- `/api/storerooms` - Storeroom management
+- `/api/transfers` - Transfer operations
+- `/api/transfer-history` - Transfer history
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## User Roles
 
-### Code Splitting
+- **Admin**: Full access to all features and user management
+- **Manager**: Access to inventory management and transfers
+- **User**: Read-only access to inventory data
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## Features by Role
 
-### Analyzing the Bundle Size
+### Admin
+- All manager permissions
+- User management
+- System configuration
+- Full CRUD operations
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+### Manager
+- Create, edit, and delete items
+- Manage storerooms
+- Create and approve transfers
+- View all reports and history
 
-### Making a Progressive Web App
+### User
+- View inventory items
+- View storeroom information
+- View transfer history
+- Search and filter data
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## Development
 
-### Advanced Configuration
+### Available Scripts
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+- `npm start` - Start development server
+- `npm test` - Run test suite
+- `npm run build` - Build for production
+- `npm run eject` - Eject from Create React App
 
-### Deployment
+### Code Style
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+The project uses ESLint for code linting and follows React best practices:
 
-### `npm run build` fails to minify
+- Functional components with hooks
+- Proper prop types and validation
+- Consistent naming conventions
+- Responsive design principles
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### Testing
+
+Run the test suite:
+```bash
+npm test
+```
+
+### Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Add tests for new features
+5. Submit a pull request
+
+## Deployment
+
+The application can be deployed to any static hosting service:
+
+- Netlify
+- Vercel
+- AWS S3 + CloudFront
+- GitHub Pages
+
+## Environment Variables
+
+- `REACT_APP_API_URL`: Backend API base URL
+- `REACT_APP_NAME`: Application name
+- `REACT_APP_VERSION`: Application version
+
+## Browser Support
+
+- Chrome (latest)
+- Firefox (latest)
+- Safari (latest)
+- Edge (latest)
+
+## License
+
+This project is licensed under the MIT License.
